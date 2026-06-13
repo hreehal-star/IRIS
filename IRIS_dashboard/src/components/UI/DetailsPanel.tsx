@@ -1,5 +1,4 @@
 import { type Disaster } from '../../hooks/useDisasters';
-
 interface DetailsPanelProps {
   disaster: Disaster | null;
   onClose: () => void;

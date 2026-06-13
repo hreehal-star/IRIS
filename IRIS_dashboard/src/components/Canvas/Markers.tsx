@@ -1,9 +1,16 @@
 import * as THREE from 'three';
 import { getCartesianCoordinates } from '../../core/mathUtils';
-import { useDisasters } from '../../hooks/useDisasters';
+import { useDisasters, type Disaster } from '../../hooks/useDisasters';
 
 interface MarkersProps {
-  onMarkerClick: (position: THREE.Vector3) => void;
+  onMarkerClick: (disaster: Disaster) => void;
+}
+
+function getMarkerVisuals(disaster: Disaster) {
+  if (disaster.type === 'wildfire') {
+    return { color: '#ffaa00', scale: Math.max(0.012, disaster.severity * 0.015) };
+  }
+  return { color: '#ff4444', scale: Math.max(0.012, disaster.severity * 0.008) };
 }
 
 export default function Markers({ onMarkerClick }: MarkersProps) {
@@ -20,7 +27,7 @@ export default function Markers({ onMarkerClick }: MarkersProps) {
           disaster.longitude
         );
 
-        const markerScale = Math.max(0.01, disaster.severity * 0.008);
+        const { color, scale } = getMarkerVisuals(disaster);
 
         return (
           <mesh
@@ -28,11 +35,11 @@ export default function Markers({ onMarkerClick }: MarkersProps) {
             position={positionVector}
             onClick={(e) => {
               e.stopPropagation();
-              onMarkerClick(positionVector);
+              onMarkerClick(disaster);
             }}
           >
-            <sphereGeometry args={[markerScale, 16, 16]} />
-            <meshBasicMaterial color="#ff4444" />
+            <sphereGeometry args={[scale, 16, 16]} />
+            <meshBasicMaterial color={color} />
           </mesh>
         );
       })}

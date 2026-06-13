@@ -1,4 +1,3 @@
-
 import httpx
 from datetime import datetime
 from app.models import NormalizedDisaster
