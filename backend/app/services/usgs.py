@@ -18,7 +18,7 @@ async def fetch_recent_earthquakes() -> list[NormalizedDisaster]:
         
         # GeoJSON has coordinates stored as (longitude, latitude, depth)
         coordinates = geometry.get("coordinates", [0, 0])
-        long, lat = coordinates[0], coordinates[1]
+        lon, lat = coordinates[0], coordinates[1]
         time_ms = properties.get("time")
         event_time = datetime.fromtimestamp(time_ms / 1000.0) if time_ms else datetime.now()
 
@@ -28,7 +28,7 @@ async def fetch_recent_earthquakes() -> list[NormalizedDisaster]:
             title = properties.get("title", "Unknown Earthquake"),
             type = "earthquake",
             latitude = lat,
-            longitude = long,
+            longitude = lon,
             severity = properties.get("mag", 0.0),
             timestamp = event_time,
             source = "USGS"
