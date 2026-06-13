@@ -5,7 +5,6 @@ from app.models import NormalizedDisaster
 
 app = FastAPI(title = "Global Disaster Information API")
 
-# Allow your React frontend (usually running on port 5173) to talk to this backend
 app.add_middleware(
     CORSMiddleware,
     allow_origins = ["http://localhost:5173"], 

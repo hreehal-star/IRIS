@@ -2,7 +2,6 @@ import httpx
 from datetime import datetime
 from app.models import NormalizedDisaster
 
-# USGS feed for earthquakes in the past day
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 
 async def fetch_recent_earthquakes() -> list[NormalizedDisaster]:
