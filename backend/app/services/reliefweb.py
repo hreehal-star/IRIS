@@ -1,9 +1,12 @@
-'''
+
 import httpx
 from datetime import datetime
 from app.models import NormalizedDisaster
+import os
+from dotenv import load_dotenv
 
-RELIEFWEB_URL = "https://api.reliefweb.int/v2/reports?appname=IRIS&limit=20&preset=latest"
+load_dotenv()
+RELIEFWEB_API = os.getenv("RELIEFWEB_API", "DEMO_KEY")
 
 COUNTRY_CENTROIDS = {
     "Afghanistan": (33.939, 67.710),
@@ -18,7 +21,7 @@ COUNTRY_CENTROIDS = {
 async def fetch_humanitarian_crises() -> list[NormalizedDisaster]:
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(RELIEFWEB_URL, timeout=10.0)
+            response = await client.get(RELIEFWEB_API, timeout=10.0)
             response.raise_for_status()
             data = response.json()
         except Exception as e:
@@ -58,4 +61,3 @@ async def fetch_humanitarian_crises() -> list[NormalizedDisaster]:
         ))
 
     return disasters
-'''

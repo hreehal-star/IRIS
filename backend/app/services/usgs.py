@@ -1,12 +1,15 @@
 import httpx
 from datetime import datetime
 from app.models import NormalizedDisaster
+import os
+from dotenv import load_dotenv
 
-USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+load_dotenv()
+USGS_API = os.getenv("USGS_API", "DEMO_KEY")
 
 async def fetch_recent_earthquakes() -> list[NormalizedDisaster]:
     async with httpx.AsyncClient() as client:
-        response = await client.get(USGS_URL)
+        response = await client.get(USGS_API)
         response.raise_for_status()
         data = response.json()
 
