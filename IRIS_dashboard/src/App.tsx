@@ -6,11 +6,14 @@ import { useState } from 'react';
 import Sidebar from './components/UI/Sidebar';
 import DetailsPanel from './components/UI/DetailsPanel';
 import { type Disaster } from './hooks/useDisasters';
+import { useDisasterWebSocket } from './hooks/useDisasterWebSocket';
 
 const queryClient = new QueryClient();
 
 function App() {
   const [selectedDisaster, setSelectedDisaster] = useState<Disaster | null>(null);
+  useDisasterWebSocket();
+  
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative w-screen h-screen bg-[#050505] overflow-hidden">
