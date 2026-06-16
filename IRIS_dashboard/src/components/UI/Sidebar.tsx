@@ -12,7 +12,7 @@ export default function Sidebar({ onSelectEvent, selectedEventId }: SidebarProps
     return (
       <div className="absolute top-0 left-0 h-full w-80 bg-black/80 border-r border-white/10 p-6 flex flex-col z-10 backdrop-blur-md">
         <h2 className="text-white text-xl font-bold mb-4">Live Feed</h2>
-        <div className="text-white/50">Establishing secure uplink...</div>
+        <div className="text-white/50">Establishing uplink...</div>
       </div>
     );
   }

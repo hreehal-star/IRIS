@@ -43,7 +43,7 @@ export default function DetailsPanel({ disaster, onClose }: DetailsPanelProps) {
       </div>
 
       <button className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium transition-colors">
-        View Intelligence Report
+        View Report
       </button>
     </div>
   );
