@@ -1,21 +1,24 @@
+
 import { type Disaster } from '../../hooks/useDisasters';
+import EventAdvisory from './EventAdvisory';
+import { useState } from 'react';
 interface DetailsPanelProps {
   disaster: Disaster | null;
   onClose: () => void;
 }
 
 export default function DetailsPanel({ disaster, onClose }: DetailsPanelProps) {
+  const [showReport, setShowReport] = useState(false);
   if (!disaster) return null;
 
   return (
+    <>
     <div className="absolute top-6 right-6 w-96 bg-black/80 border border-white/10 rounded-xl p-6 z-10 backdrop-blur-md shadow-2xl">
       <button 
         onClick={onClose}
         className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
       >
-        ✕
       </button>
-
       <div className="mb-4">
         <h2 className="text-white text-2xl font-bold leading-tight">{disaster.title}</h2>
         <p className="text-white/50 text-sm mt-1">Source: {disaster.source}</p>
@@ -42,9 +45,18 @@ export default function DetailsPanel({ disaster, onClose }: DetailsPanelProps) {
         </div>
       </div>
 
-      <button className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium transition-colors">
+      <button 
+      onClick={() => setShowReport(true)}
+      className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded font-medium transition-colors">
         View Report
       </button>
     </div>
+    {showReport && (
+        <EventAdvisory 
+          disaster={disaster} 
+          onClose={() => setShowReport(false)} 
+        />
+      )}
+      </>
   );
 }

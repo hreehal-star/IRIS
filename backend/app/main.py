@@ -8,6 +8,8 @@ from app.services.reliefweb import fetch_humanitarian_crises
 import json
 import random
 from datetime import datetime
+from app.services.event_report import generate_public_advisory
+from fastapi import Request
 
 app = FastAPI(title = "Global Disaster Information API")
 
@@ -87,7 +89,13 @@ async def injector_loop():
         }
         
         print(f"Broadcasting stream injection: {simulated_event['id']}")
-        await manager.broadcast(simulated_event)
+       # await manager.broadcast(simulated_event)
+
+@app.post("/api/analyze")
+async def analyze_disaster(request: Request):
+    payload = await request.json()
+    report = generate_public_advisory(payload)
+    return report
 
 #@asynccontextmanager
 async def lifespan(app: FastAPI):

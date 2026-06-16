@@ -18,7 +18,12 @@ function App() {
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={2} />
-        <OrbitControls minDistance={1.2} maxDistance={5} enablePan={false}/>
+        <OrbitControls 
+          minDistance={1.2} 
+          maxDistance={5} 
+          enablePan={false}
+          onStart={() => setSelectedDisaster(null)}
+        />
         <Globe selectedDisaster={selectedDisaster} onMarkerClick={setSelectedDisaster}/>
       </Canvas>
       </div>
