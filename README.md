@@ -12,6 +12,10 @@ IRIS (Interactive Regional Intelligence System) is designed to aggregate, normal
 * **Hardware-Accelerated 3D WebGL Globe:** A custom-built Three.js sphere with dynamic spatial coordinate mapping, orbit controls, and automated camera targeting.
 * **Heuristic Advisory Engine:** An automated spatial analysis pipeline that calculates estimated impact radii and generates localized, practical public safety advisories based on disaster severity and classification.
 
+## Future Features to be Implemented
+* **Spatial Data Persistence:** Transition from stateless, in-memory processing to **PostgreSQL** with the **PostGIS** extension to enable temporal scrubbing, historical querying, and heat-map generation over time.
+* **Autonomous Reconnaissance Routing:** Integrate pathfinding algorithms to dynamically calculate and visualize optimal, safe flight paths for UAVs or drones navigating around active hazard zones and severe weather systems.
+
 
 ## Architecture & Tech Stack
 
